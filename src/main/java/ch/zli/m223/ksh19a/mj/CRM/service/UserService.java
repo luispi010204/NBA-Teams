@@ -10,4 +10,6 @@ public interface UserService {
     AppUser getUser(Long id);
 
     AppUser insertUser(String name);
+
+    Long deleteUser(String name);
 }

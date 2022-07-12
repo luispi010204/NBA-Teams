@@ -27,8 +27,13 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    UserDTO insertUser(UserInputDTO userData) {
+    UserDTO insertUser(@RequestBody UserInputDTO userData) {
         return new UserDTO(userService.insertUser(userData.name));
+    }
+
+    @DeleteMapping("/users/{name}")
+    Long deleteUser(@PathVariable("name") String name) {
+        return userService.deleteUser(name);
     }
 
 
