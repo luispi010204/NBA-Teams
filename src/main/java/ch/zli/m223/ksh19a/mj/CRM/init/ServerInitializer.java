@@ -1,20 +1,31 @@
 package ch.zli.m223.ksh19a.mj.CRM.init;
 
+import ch.zli.m223.ksh19a.mj.CRM.model.AppUser;
+import ch.zli.m223.ksh19a.mj.CRM.repository.RoleRepository;
 import ch.zli.m223.ksh19a.mj.CRM.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 @Component
 public class ServerInitializer implements ApplicationRunner {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
+    @Transactional
     public void run(ApplicationArguments args) throws Exception {
-        userRepository.insert("Hans");
-        userRepository.insert("Peter");
+        AppUser hans = userRepository.insert("Hans");
+        roleRepository.insert("Admin", hans);
+        roleRepository.insert("User", hans);
+
+        AppUser peter = userRepository.insert("Peter");
+        roleRepository.insert("User", peter);
     }
 }
