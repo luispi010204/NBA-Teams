@@ -1,4 +1,6 @@
-package ch.zli.m223.ksh19a.mj.CRM.model;
+package ch.zli.m223.ksh19a.mj.CRM.model.Role;
+
+import ch.zli.m223.ksh19a.mj.CRM.model.Player.PlayerImpl;
 
 import javax.persistence.*;
 
@@ -11,14 +13,14 @@ public class RoleImpl implements Role {
     private String role;
 
     @ManyToOne
-    private AppUserImpl appUser;
+    private PlayerImpl player;
 
     protected RoleImpl() { /* for JPA only*/}
 
-    public RoleImpl(String role, AppUserImpl appUser) {
+    public RoleImpl(String role, PlayerImpl player) {
         super();
         this.role = role;
-        this.appUser = appUser;
+        this.player = player;
     }
 
     @Override
