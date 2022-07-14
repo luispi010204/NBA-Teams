@@ -7,6 +7,8 @@ import ch.zli.m223.ksh19a.mj.CRM.model.Role.Role;
 import ch.zli.m223.ksh19a.mj.CRM.model.Role.RoleImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 
 public interface RoleRepository extends JpaRepository<RoleImpl, Long> {
 
@@ -21,4 +23,6 @@ public interface RoleRepository extends JpaRepository<RoleImpl, Long> {
 
         return roleImpl;
     }
+
+    Optional<Role> findRoleByName(String role);
 }

@@ -10,7 +10,7 @@ public class RoleImpl implements Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String role;
+    private String name;
 
     @ManyToOne
     private PlayerImpl player;
@@ -19,7 +19,7 @@ public class RoleImpl implements Role {
 
     public RoleImpl(String role, PlayerImpl player) {
         super();
-        this.role = role;
+        this.name = role;
         this.player = player;
     }
 
@@ -30,6 +30,6 @@ public class RoleImpl implements Role {
 
     @Override
     public String getRole() {
-        return role;
+        return name;
     }
 }

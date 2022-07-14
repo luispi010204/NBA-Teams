@@ -3,6 +3,7 @@ package ch.zli.m223.ksh19a.mj.CRM.controller.Player;
 
 import ch.zli.m223.ksh19a.mj.CRM.model.Player.Player;
 import ch.zli.m223.ksh19a.mj.CRM.model.Role.Role;
+import ch.zli.m223.ksh19a.mj.CRM.model.City.City;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,5 +31,12 @@ public class PlayerDto {
         for (var team : player.getTeams()) {
             teams.add(team.getName());
         }
+
+        for (var city : player.getCities()) {
+            cities.add(city.getName());
+        }
+
+
+
     }
 }

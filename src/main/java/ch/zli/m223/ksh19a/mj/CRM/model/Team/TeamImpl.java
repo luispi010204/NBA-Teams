@@ -1,5 +1,6 @@
 package ch.zli.m223.ksh19a.mj.CRM.model.Team;
 
+import ch.zli.m223.ksh19a.mj.CRM.model.City.CityImpl;
 import ch.zli.m223.ksh19a.mj.CRM.model.Player.Player;
 import ch.zli.m223.ksh19a.mj.CRM.model.Player.PlayerImpl;
 
@@ -19,10 +20,13 @@ public class TeamImpl implements Team {
     @ManyToOne
     private PlayerImpl player;
 
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<CityImpl> cities;
 
 
     protected TeamImpl() {
         /* for JPA only*/
+        cities = new ArrayList<>();
 
     }
 
@@ -42,6 +46,10 @@ public class TeamImpl implements Team {
     @Override
     public String getName() {
         return name;
+    }
+
+    public void addCityToList(CityImpl city) {
+        cities.add(city);
     }
 
 

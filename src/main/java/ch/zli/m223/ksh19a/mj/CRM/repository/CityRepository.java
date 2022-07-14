@@ -1,5 +1,7 @@
 package ch.zli.m223.ksh19a.mj.CRM.repository;
 
+import ch.zli.m223.ksh19a.mj.CRM.model.City.City;
+import ch.zli.m223.ksh19a.mj.CRM.model.City.CityImpl;
 import ch.zli.m223.ksh19a.mj.CRM.model.Player.Player;
 import ch.zli.m223.ksh19a.mj.CRM.model.Player.PlayerImpl;
 import ch.zli.m223.ksh19a.mj.CRM.model.Team.Team;
@@ -8,17 +10,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface TeamRepository extends JpaRepository<TeamImpl, Long> {
+public interface CityRepository extends JpaRepository<CityImpl, Long> {
 
+    default City insert(String cityName, Team team) {
+        TeamImpl teamImpl = (TeamImpl) team;
+        CityImpl newCity = new CityImpl(cityName, teamImpl);
 
-    default Team insert(String teamName, Player player) {
-        PlayerImpl playerImpl = (PlayerImpl) player;
-        TeamImpl newTeam = new TeamImpl(teamName, playerImpl);
-
-        TeamImpl saveTeam = save(newTeam);
-        playerImpl.addTeamToList(saveTeam);
-
-        return saveTeam;
+        CityImpl saveCity = save(newCity);
+        teamImpl.addCityToList(saveCity);
+        return saveCity;
 
     }
 

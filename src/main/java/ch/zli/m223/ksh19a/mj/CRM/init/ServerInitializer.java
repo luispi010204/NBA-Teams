@@ -1,8 +1,10 @@
 package ch.zli.m223.ksh19a.mj.CRM.init;
 
+import ch.zli.m223.ksh19a.mj.CRM.cities.AppCities;
 import ch.zli.m223.ksh19a.mj.CRM.model.Player.Player;
 import ch.zli.m223.ksh19a.mj.CRM.model.Team.Team;
 import ch.zli.m223.ksh19a.mj.CRM.players.AppPlayers;
+import ch.zli.m223.ksh19a.mj.CRM.repository.CityRepository;
 import ch.zli.m223.ksh19a.mj.CRM.repository.RoleRepository;
 import ch.zli.m223.ksh19a.mj.CRM.repository.PlayerRepository;
 import ch.zli.m223.ksh19a.mj.CRM.repository.TeamRepository;
@@ -24,6 +26,8 @@ public class ServerInitializer implements ApplicationRunner {
     private RoleRepository roleRepository;
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
+    private CityRepository cityRepository;
 
     @Override
     @Transactional
@@ -45,19 +49,24 @@ public class ServerInitializer implements ApplicationRunner {
         //roleRepository.insert(AppRoles.SG, cj);
 
 
-        teamRepository.insert(AppTeams.LAL, james);
+        Team lakers = teamRepository.insert(AppTeams.LAL, james);
         //teamRepository.insert(AppTeams.LAL, james);
         //teamRepository.insert("Los Angeles Lakers", davis);
         //teamRepository.insert(AppTeams.LAL, davis);
 
         //teamRepository.insert("Warriors", steph);
-        teamRepository.insert(AppTeams.GSW, steph);
+        Team warriors = teamRepository.insert(AppTeams.GSW, steph);
         //teamRepository.insert("Warriors", thompson);
         //teamRepository.insert(AppTeams.GSW, thompson);
 
        // teamRepository.insert("Portland Trail Blazers", dame);
-        teamRepository.insert(AppTeams.PTB, dame);
+        Team blazers = teamRepository.insert(AppTeams.PTB, dame);
         //teamRepository.insert("Portland Trail Blazers", cj);
         //teamRepository.insert(AppTeams.PTB, cj);
+
+        cityRepository.insert(AppCities.LA, lakers);
+        cityRepository.insert(AppCities.SANFRACISCO, warriors);
+        cityRepository.insert(AppCities.PORTLAND, blazers);
+
     }
 }

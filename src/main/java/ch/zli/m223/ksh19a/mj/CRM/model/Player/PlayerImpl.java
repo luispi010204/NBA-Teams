@@ -1,5 +1,7 @@
 package ch.zli.m223.ksh19a.mj.CRM.model.Player;
 
+import ch.zli.m223.ksh19a.mj.CRM.model.City.City;
+import ch.zli.m223.ksh19a.mj.CRM.model.City.CityImpl;
 import ch.zli.m223.ksh19a.mj.CRM.model.Role.Role;
 import ch.zli.m223.ksh19a.mj.CRM.model.Role.RoleImpl;
 import ch.zli.m223.ksh19a.mj.CRM.model.Team.Team;
@@ -23,11 +25,15 @@ public class PlayerImpl implements Player {
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<TeamImpl> teams;
 
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+    private List<CityImpl> cities;
+
 
     protected PlayerImpl() {
         /* for JPA only*/
         teams = new ArrayList<>();
         roles = new ArrayList<>();
+        cities = new ArrayList<>();
     }
 
     @ManyToOne
@@ -71,12 +77,21 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public List<City> getCities() {
+        return new ArrayList<>(cities);
+    }
+
+    @Override
     public void addRoleToList(RoleImpl role) {
         roles.add(role);
     }
 
     public void addTeamToList(TeamImpl team) {
         teams.add(team);
+    }
+
+    public void addCityToList(CityImpl city) {
+        cities.add(city);
     }
 
 
