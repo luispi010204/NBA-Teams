@@ -33,36 +33,32 @@ public class ServerInitializer implements ApplicationRunner {
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
 
-        Player james = playerRepository.insert(AppPlayers.LEBRON, "6");
+        Player admin = playerRepository.insert("Luigi", "420");
+        roleRepository.insert(AppRoles.ADMIN, admin);
+        roleRepository.insert(AppRoles.USER, admin);
+
+        Player james = playerRepository.insert("Benutzer.Lebron", "6");
+        playerRepository.insert(AppPlayers.LEBRON, "6");
         roleRepository.insert(AppRoles.SF, james);
-        //Player davis = playerRepository.insert(AppPlayers.DAVIS, "23");
-        //roleRepository.insert(AppRoles.SF, davis);
+        roleRepository.insert(AppRoles.PG, james);
+        roleRepository.insert(AppRoles.PF, james);
 
-        Player steph = playerRepository.insert(AppPlayers.CURRY, "30");
+
+        Player steph = playerRepository.insert("Benutzer.Steph", "30");
+        playerRepository.insert(AppPlayers.CURRY, "30");
         roleRepository.insert(AppRoles.PG, steph);
-        //Player thompson = playerRepository.insert(AppPlayers.THOMPSON, "11");
-        //roleRepository.insert(AppRoles.SG, thompson);
 
-        Player dame = playerRepository.insert(AppPlayers.DAME, "0");
+
+        Player dame = playerRepository.insert("Benutzer.Dame", "0");
+        playerRepository.insert(AppPlayers.DAME, "0");
         roleRepository.insert(AppRoles.PG, dame);
-        //Player cj = playerRepository.insert(AppPlayers.CJ, "3");
-        //roleRepository.insert(AppRoles.SG, cj);
-
 
         Team lakers = teamRepository.insert(AppTeams.LAL, james);
-        //teamRepository.insert(AppTeams.LAL, james);
-        //teamRepository.insert("Los Angeles Lakers", davis);
-        //teamRepository.insert(AppTeams.LAL, davis);
 
-        //teamRepository.insert("Warriors", steph);
         Team warriors = teamRepository.insert(AppTeams.GSW, steph);
-        //teamRepository.insert("Warriors", thompson);
-        //teamRepository.insert(AppTeams.GSW, thompson);
 
-       // teamRepository.insert("Portland Trail Blazers", dame);
         Team blazers = teamRepository.insert(AppTeams.PTB, dame);
-        //teamRepository.insert("Portland Trail Blazers", cj);
-        //teamRepository.insert(AppTeams.PTB, cj);
+
 
         cityRepository.insert(AppCities.LA, lakers);
         cityRepository.insert(AppCities.SANFRACISCO, warriors);

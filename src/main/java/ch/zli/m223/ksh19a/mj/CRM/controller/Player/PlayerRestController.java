@@ -8,6 +8,10 @@ import ch.zli.m223.ksh19a.mj.CRM.model.Player.Player;
 import ch.zli.m223.ksh19a.mj.CRM.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ch.zli.m223.ksh19a.mj.CRM.controller.Role.RoleDto;
+import ch.zli.m223.ksh19a.mj.CRM.controller.Player.PlayerDto;
+import ch.zli.m223.ksh19a.mj.CRM.controller.Player.PlayerInputDto;
+
 
 
 @RestController
@@ -30,12 +34,12 @@ public class PlayerRestController {
 
     @PostMapping("/players")
     public PlayerDto insertPlayer(@RequestBody PlayerInputDto playerData) {
-        return new PlayerDto(playerService.insertPlayer(playerData.name, playerData.password));
+        return new PlayerDto(playerService.insertPlayer(playerData.email, playerData.password));
     }
 
-    @DeleteMapping("/players/{name}")
-    public Long deleteUser(@PathVariable("name") String name) {
-        return playerService.deletePlayer(name);
+    @DeleteMapping("/players/{email}")
+    public Long deleteUser(@PathVariable("email") String email) {
+        return playerService.deletePlayer(email);
     }
 
 

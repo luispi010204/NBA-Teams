@@ -6,4 +6,7 @@ public interface AppRoles {
     public static final String SF = "SF";
     public static final String PF = "PF";
     public static final String C = "C";
+
+    public static final String USER = "User";
+    public static final String ADMIN = "Admin";
 }

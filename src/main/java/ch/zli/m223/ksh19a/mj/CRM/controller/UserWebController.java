@@ -23,4 +23,24 @@ public class UserWebController {
         return "playerList";
     }
 
+    @GetMapping("/admin")
+    String getToAdminPage() {
+        return "admin_page";
+    }
+
+    @GetMapping("/user")
+    String getToUserPage() {
+        return "user_page";
+    }
+
+
+    @GetMapping("/login")
+    String getToLoginPage() {
+        return "login_page";
+    }
+
+
+
+
+
 }

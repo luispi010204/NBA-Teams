@@ -12,6 +12,7 @@ public class PlayerDto {
 
     public Long id;
     public String name;
+    public String email;
     public List<String> roles;
     public List<String> teams;
     public List<String> cities;
@@ -20,6 +21,7 @@ public class PlayerDto {
     public PlayerDto(Player player) {
         id = player.getID();
         name = player.getName();
+        email = player.getEmail();
         roles = new ArrayList<>();
         teams = new ArrayList<>();
         cities = new ArrayList<>();
